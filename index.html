@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+<style>
+  article, aside, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+</style>
+
+<section class="image-uploader-section">
+  <div class="wrapper">
+    <form id="image-upload-form" class="box" method="post" action="" enctype="multipart/form-data">
+      <div
+        id="drop_zone"
+        ondrop="dropHandler(event);"
+        ondragover="dragOverHandler(event);">
+        <input id="upload-file" class="upload-file" type="file" name="files[]" id="file" onchange="readURL(this);" />
+        <label for="file">Upload<span class="box__dragndrop"> or drag or paste a photo</span>.</label>
+
+        <img id="image-display" class="hidden" src="#" alt="your image" />
+      </div>
+      <input type="submit" value="submit">
+    </form>
+	</div>
+</section>
+<script
+  src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="spookify.js"></script>
