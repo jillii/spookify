@@ -8,17 +8,24 @@
 
 <section class="image-uploader-section">
   <div class="wrapper">
+    <img src="images/bat.svg" alt="spooky bat" class="bg-image bg-image-top-right">
+    <img src="images/raven.svg" alt="spooky raven" class="bg-image bg-image-bottom-left">
+    <h1 class="image-uploader-headline">Upload a Photo to Spookify Your Home</h1>
     <form id="image-upload-form" class="box" action="" enctype="multipart/form-data">
-      <div
-        id="drop_zone"
-        ondrop="dropHandler(event);"
-        ondragover="dragOverHandler(event);">
-        <input class="upload-file" type="file" name="files[]" accept="image/*" id="file" onchange="readURL(this);" />
-        <label for="file">Upload<span class="box__dragndrop"> or drag or paste a photo</span>.</label>
-
-        <img id="image-display" class="hidden" src="#" />
+      <div class="drop-zone-container">
+        <div
+          id="drop_zone"
+          class="drop-zone"
+          ondrop="dropHandler(event);"
+          ondragover="dragOverHandler(event);">
+          <div class="drop-zone-icon"></div>
+          <input class="upload-file" type="file" name="files[]" accept="image/*" id="file" onchange="readURL(this);" />
+          <label for="file" class="drop-zone-headline"><span class="box__dragndrop">Upload</span> or drag or paste a photo.</label>
+          <p class="drop-zone-copy">JPG, PNG - Max size 5Mb</p>
+          <img id="image-display" class="hidden" src="#" />
+        </div>
       </div>
-      <button>Add a Photo</button>
+      <button disabled class="image-uploader-btn">Add a Photo</button>
     </form>
 	</div>
 </section>

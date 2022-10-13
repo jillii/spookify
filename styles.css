@@ -1,11 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+.wrapper {
+  max-width: 1194px;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
 .hidden,
 .upload-file {
   display: none;
 }
 
-#drop_zone {
-  border: 5px solid blue;
-  width: 200px;
-  height: 100px;
+.image-uploader-section {
+  padding: 104px 0 219px;
+  background-image: url(images/spookify_bg.png);
+  color: #21262B;
+  text-align: center;
+  overflow: hidden;
+}
+.image-uploader-headline {
+  margin-bottom: 72px;
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 700;
+}
+.drop-zone-container {
+  padding: 21px;
+  background-color: #21262B;
+  color: #fff;
+  border-radius: 25px;
+  font-size: 14px;
+  line-height: 19px;
 }
 
+.drop-zone {
+  padding: 70px 21px;
+  border: 2px dashed #477D77 !important;
+  border-right: 13px;
+}
+
+.drop-zone-icon {
+  background-image: url(images/haunted-mansion.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #477D77;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 13px;
+  padding: 9px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.drop-zone-headline {
+  font-size: 26px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+.drop-zone-copy {
+  margin-top: 13px;
+}
+
+.box__dragndrop {
+  color: #477D77;
+}
+
+.bg-image {
+  position: absolute;
+}
+
+.bg-image-top-right {
+  top: -146px;
+  right: -85px;
+}
+
+.bg-image-bottom-left {
+  bottom: -236px;
+  left: -78px;
+}
+
+.image-uploader-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: 42px;
+  padding: 16px 21px;
+  background-color: #477D77;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.image-uploader-btn[disabled] {
+  background-color: #9A9A9A;
+  cursor: auto;
+}
