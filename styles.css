@@ -40,8 +40,8 @@ body {
 
 .drop-zone {
   padding: 70px 21px;
-  border: 2px dashed #477D77 !important;
-  border-right: 13px;
+  border: 2px dashed #477D77;
+  border-radius: 13px;
 }
 
 .drop-zone-icon {
