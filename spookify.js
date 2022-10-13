@@ -12,13 +12,12 @@ const strs = [
   '0.85'
 ]
 
-let form = document.getElementById('image-upload-form'),
-    file = document.querySelector('#file'),
-    results = document.getElementById('results');
+let form    = document.getElementById('image-upload-form'),
+    file    = document.querySelector('#file'),
+    results = document.getElementById('results'),
+    valid   = ["front_of_house", "rear_of_house", "side_of_house", "street_scene"];
 
 async function validate(base_img) {
-  console.log('validate method');
-
   var data = JSON.stringify({
     "base64": base_img
   });
@@ -37,7 +36,15 @@ async function validate(base_img) {
   console.log(response);
   const formedImgData = response.data.result;
 
-  return true; // change before live
+  for (var i = 1; i < formedImgData.length; i += 2) {
+    if (parseFloat(formedImgData[i]) > 0.65) {
+      if (valid.includes(formedImgData[i - 1])) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 async function get_results(base_img, promptName, str) {
@@ -50,7 +57,7 @@ async function get_results(base_img, promptName, str) {
 
   var config = {
     method: 'post',
-    url: 'https://spookify-model.foxyai.com/foxy/spookify',
+    url: 'https://msomg243rj.execute-api.us-east-1.amazonaws.com/prod/foxy/spookify ',
      headers: { 
       'Content-Type': 'application/json',
       'matt-test': 'MATT-TEST'
@@ -68,7 +75,7 @@ async function get_results(base_img, promptName, str) {
 function generate_images (event) {
   let str = event.target.result;
 
-  validate(str);
+  console.log(validate(str));
 
   // if (validate(str)) {
   //   for (var i = 0; i < 4; i++) {
