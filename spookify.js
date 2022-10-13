@@ -19,23 +19,23 @@ let form = document.getElementById('image-upload-form'),
 function validate(base_img) {
   console.log('validate method');
 
-  var data = JSON.stringify({
-    "base64": base_img
-  });
+  // var data = JSON.stringify({
+  //   "base64": base_img
+  // });
 
-  var config = {
-    method: 'post',
-    url: 'https://b64-room-scene.foxyai.com/foxy/room_scene_classification',
-     headers: { 
-      'Content-Type': 'application/json',
-      'matt-test': 'MATT-TEST'
-    },
-    data : data
-  };
+  // var config = {
+  //   method: 'post',
+  //   url: 'https://b64-room-scene.foxyai.com/foxy/room_scene_classification',
+  //    headers: { 
+  //     'Content-Type': 'application/json',
+  //     'matt-test': 'MATT-TEST'
+  //   },
+  //   data : data
+  // };
 
-  const response = axios(config);
-  console.log(response);
-  const formedImgData = response.data.result;
+  // const response = axios(config);
+  // console.log(response);
+  // const formedImgData = response.data.result;
 
   return true; // change before live
 }
