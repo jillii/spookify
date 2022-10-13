@@ -18,33 +18,35 @@ let form    = document.getElementById('image-upload-form'),
     valid   = ["front_of_house", "rear_of_house", "side_of_house", "street_scene"];
 
 async function validate(base_img) {
-  var data = JSON.stringify({
-    "base64": base_img
-  });
+  // var data = JSON.stringify({
+  //   "base64": base_img
+  // });
 
-  var config = {
-    method: 'post',
-    url: 'https://b64-room-scene.foxyai.com/foxy/room_scene_classification',
-     headers: { 
-      'Content-Type': 'application/json',
-      'matt-test': 'MATT-TEST'
-    },
-    data : data
-  };
+  // var config = {
+  //   method: 'post',
+  //   url: 'https://b64-room-scene.foxyai.com/foxy/room_scene_classification',
+  //    headers: { 
+  //     'Content-Type': 'application/json',
+  //     'matt-test': 'MATT-TEST'
+  //   },
+  //   data : data
+  // };
 
-  const response = await axios(config);
-  console.log(response);
-  const formedImgData = response.data.result;
+  // const response = await axios(config);
+  // console.log(response);
+  // const formedImgData = response.data.result;
 
-  for (var i = 1; i < formedImgData.length; i += 2) {
-    if (parseFloat(formedImgData[i]) > 0.65) {
-      if (valid.includes(formedImgData[i - 1])) {
-        return true;
-      }
-    }
-  }
+  // for (var i = 1; i < formedImgData.length; i += 2) {
+  //   if (parseFloat(formedImgData[i]) > 0.65) {
+  //     if (valid.includes(formedImgData[i - 1])) {
+  //       return true;
+  //     }
+  //   }
+  // }
 
-  return false;
+  // return false;
+
+  return true;
 }
 
 async function get_results(base_img, promptName, str) {
@@ -75,13 +77,11 @@ async function get_results(base_img, promptName, str) {
 function generate_images (event) {
   let str = event.target.result;
 
-  console.log(validate(str));
-
-  // if (validate(str)) {
-  //   for (var i = 0; i < 4; i++) {
-  //     results.append(get_results(str, prompts[i], strs[i]));
-  //   }
-  // }
+  if (validate(str)) {
+    for (var i = 0; i < 4; i++) {
+      results.append(get_results(str, prompts[i], strs[i]));
+    }
+  }
 }
 
 function handleSubmit (event) {
