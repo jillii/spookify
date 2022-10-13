@@ -66,12 +66,10 @@ async function get_results(base_img, promptName, str) {
     data : data
   };
 
-  await axios(config)
-    .then((response) => {
-      const formedImgData = response.data.result;
-      return formedImgData;
-    });
+  const response = await axios(config);
+  const formedImgData = response.data.result;
 
+  return formedImgData;
 }
 
 function generate_images (event) {
@@ -81,6 +79,7 @@ function generate_images (event) {
   if (validate(str)) {
     for (var i = 0; i < 4; i++) {
       src = get_results(str, prompts[i], strs[i]);
+
       results.find('img').attr('src', ' data:image/jpg;base64,' + src);
     }
   }
