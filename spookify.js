@@ -74,7 +74,7 @@ async function get_results(base_img, promptName, str) {
 }
 
 function generate_images (event) {
-  let str = event.target.result;
+  let str = event.target.result.split('data:image/png;base64,')[1];
 
   if (validate(str)) {
     for (var i = 0; i < 4; i++) {
