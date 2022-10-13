@@ -44,6 +44,7 @@ function readURL(input) {
 
     reader.onload = function (e) {
       $('#image-display').removeClass('hidden').attr('src', e.target.result).width(150).height(200);
+      $('.image-uploader-btn').removeAttr('disabled');
     };
 
     reader.readAsDataURL(file);
