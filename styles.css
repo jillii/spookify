@@ -19,6 +19,8 @@ body {
 .image-uploader-section {
   padding: 104px 0 219px;
   background-image: url(images/spookify_bg.png);
+  background-repeat: no-repeat;
+  background-position: center top;
   color: #21262B;
   text-align: center;
   overflow: hidden;
