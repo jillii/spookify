@@ -16,23 +16,28 @@ let form = document.getElementById('image-upload-form'),
     file = document.querySelector('#file'),
     results = document.getElementById('results');
 
-$.ajax({
-  url: "https://b64-room-scene.foxyai.com/foxy/room_scene_classification",
-  type: "GET",
-  success: function (result) {
-    console.log(result);
-  },
-  error: function (error) {
-    console.log(error);
-  }
-
-});
-
 function validate(base_img) {
   console.log('validate method');
 
+  var data = JSON.stringify({
+    "base64": base_img
+  });
 
-  return true;
+  var config = {
+    method: 'post',
+    url: 'https://b64-room-scene.foxyai.com/foxy/room_scene_classification',
+     headers: { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
+    data : data
+  };
+
+  const response = axios(config);
+  console.log(response);
+  const formedImgData = response.data.result;
+
+  return true; // change before live
 }
 
 function get_results(base_img, promptName, str) {
