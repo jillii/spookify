@@ -28,7 +28,8 @@ function validate(base_img) {
     url: 'https://b64-room-scene.foxyai.com/foxy/room_scene_classification',
      headers: { 
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'matt-test': 'MATT-TEST'
     },
     data : data
   };
@@ -53,7 +54,8 @@ function get_results(base_img, promptName, str) {
     url: 'https://spookify-model.foxyai.com/foxy/spookify',
      headers: { 
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'matt-test': 'MATT-TEST'
     },
     data : data
   };
