@@ -208,3 +208,22 @@ a.image-display-remove {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .image-uploader-headline {
+    font-size: 33px;
+    line-height: 38px;
+  }
+
+  .drop-zone-headline {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .image-uploader-headline {
+    font-size: 28px;
+    line-height: 33px;
+  }
+}
