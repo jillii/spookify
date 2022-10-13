@@ -3,8 +3,6 @@ const container = $('.drop-zone-container'),
       button    = $('.image-uploader-btn');
 
 function dropHandler(ev) {
-  console.log('File(s) dropped');
-
   // Prevent default behavior (Prevent file from being opened)
   ev.preventDefault();
 
@@ -26,15 +24,11 @@ function dropHandler(ev) {
 }
 
 function dragOverHandler(ev) {
-  console.log('File(s) in drop zone');
-
-  // Prevent default behavior (Prevent file from being opened)
   ev.preventDefault();
 }
 
 // Show uploaded image
 function readURL(input) {
-  console.log('hi this happened');
   if (input.kind === 'file' || (input.files && input.files[0])) {
     if (input.kind === 'file') {
       file = input.getAsFile();

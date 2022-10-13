@@ -126,10 +126,6 @@ a.image-display-remove {
   margin: 8px;
 }
 
-.image-uploader-btn:after {
-  content: attr(off-text);
-}
-
 .btn[disabled] {
   background-color: #9A9A9A;
   cursor: auto;
@@ -142,8 +138,15 @@ a.image-display-remove {
   display: none;
 }
 
+.image-uploader-btn:after {
+  content: attr(off-text);
+}
 .drop-zone-container.ready + .image-uploader-btn:after {
   content: attr(on-text);
+}
+
+.image-uploader-btn.working:after {
+  content: attr(working-text) !important;
 }
 
 .drop-zone-container.ready .image-display-remove {

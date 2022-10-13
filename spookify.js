@@ -14,8 +14,10 @@ const strs = [
 
 let form    = document.getElementById('image-upload-form'),
     file    = document.querySelector('#file'),
-    results = $('#results').find('.result-card'),
-    valid   = ["front_of_house", "rear_of_house", "side_of_house", "street_scene"];
+    results_container = $('#results'),
+    results = results_container.find('.result-card'),
+    valid   = ["front_of_house", "rear_of_house", "side_of_house", "street_scene"],
+    btn     = $('.image-uploader-btn');
 
 async function validate(base_img) {
   // var data = JSON.stringify({
@@ -49,7 +51,7 @@ async function validate(base_img) {
   return true;
 }
 
-async function get_results(base_img, promptName, str) {
+const get_results = async (base_img, promptName, str) => {
   console.log("get_results");
   var data = JSON.stringify({
     "strength": str,
@@ -70,33 +72,35 @@ async function get_results(base_img, promptName, str) {
       const response = await axios(config);
       return response.data.result;
   } catch (err) {
-      console.error(err);
+      console.log(err);
   }
 }
 
-function generate_images (event) {
+async function generate_images (event) {
   let str = event.target.result.split('data:image/png;base64,')[1];
   var img = '';
 
   if (validate(str)) {
     for (var i = 0; i < 4; i++) {
-      src = get_results(str, prompts[i], strs[i]);
-
-      console.log(src);
-
-      results.find('img').attr('src', ' data:image/jpg;base64,' + src);
+      src = await get_results(str, prompts[i], strs[i]);
+      results.find('img').eq(i).attr('src', ' data:image/jpg;base64,' + src);
     }
   }
+
+  await btn.removeClass('working').removeAttr('disabled');
+  await results_container.removeClass('hidden');
 }
 
 function handleSubmit (event) {
-  console.log("handleSubmit");
   event.preventDefault();
+
+  btn.addClass('working').attr('disabled', true);
+  results_container.addClass('hidden');
 
   let reader = new FileReader();
   reader.onload = generate_images;
   reader.readAsDataURL(file);
-
 }
 
 form.addEventListener('submit', handleSubmit);
+document.getElementById('retry').addEventListener('click', handleSubmit);
