@@ -14,7 +14,7 @@ const strs = [
 
 let form    = document.getElementById('image-upload-form'),
     file    = document.querySelector('#file'),
-    results = document.getElementById('results'),
+    results = $('#results').find('.result-card'),
     valid   = ["front_of_house", "rear_of_house", "side_of_house", "street_scene"];
 
 async function validate(base_img) {
@@ -66,19 +66,22 @@ async function get_results(base_img, promptName, str) {
     data : data
   };
 
-  const response = await axios(config);
-  console.log(response);
-  const formedImgData = response.data.result;
+  await axios(config)
+    .then((response) => {
+      const formedImgData = response.data.result;
+      return formedImgData;
+    });
 
-  return formedImgData;
 }
 
 function generate_images (event) {
   let str = event.target.result.split('data:image/png;base64,')[1];
+  var img = '';
 
   if (validate(str)) {
     for (var i = 0; i < 4; i++) {
-      results.append(get_results(str, prompts[i], strs[i]));
+      src = get_results(str, prompts[i], strs[i]);
+      results.find('img').attr('src', ' data:image/jpg;base64,' + src);
     }
   }
 }
