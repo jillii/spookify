@@ -57,6 +57,10 @@ body {
   box-sizing: border-box;
 }
 
+.image-display {
+  object-fit: contain;
+}
+
 .drop-zone-headline {
   font-size: 26px;
   line-height: 40px;
