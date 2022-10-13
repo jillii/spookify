@@ -49,7 +49,7 @@ async function validate(base_img) {
   return true;
 }
 
-function get_results(base_img, promptName, str) {
+async function get_results(base_img, promptName, str) {
   console.log("get_results");
   var data = JSON.stringify({
     "strength": str,
@@ -65,11 +65,13 @@ function get_results(base_img, promptName, str) {
     },
     data : data
   };
-
-  const response = axios(config);
-  const formedImgData = response.data.result;
-
-  return formedImgData;
+ 
+  try {
+      const response = await axios(config);
+      return response.data.result;
+  } catch (err) {
+      console.error(err);
+  }
 }
 
 function generate_images (event) {
