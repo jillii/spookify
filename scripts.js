@@ -1,3 +1,7 @@
+const container = $('.drop-zone-container'),
+      display   = $('#image-display'),
+      button    = $('.image-uploader-btn');
+
 function dropHandler(ev) {
   console.log('File(s) dropped');
 
@@ -8,10 +12,8 @@ function dropHandler(ev) {
     // Use DataTransferItemList interface to access the file(s)
     [...ev.dataTransfer.items].forEach((item, i) => {
       // If dropped items aren't files, reject them
-      if (item.kind === 'file') {
-        const file = item.getAsFile();
-        console.log(`… file[${i}].name = ${file.name}`);
 
+      if (item.kind === 'file') {
         readURL(item);
       }
     });
@@ -32,6 +34,7 @@ function dragOverHandler(ev) {
 
 // Show uploaded image
 function readURL(input) {
+  console.log('hi this happened');
   if (input.kind === 'file' || (input.files && input.files[0])) {
     if (input.kind === 'file') {
       file = input.getAsFile();
@@ -43,11 +46,20 @@ function readURL(input) {
     var reader = new FileReader();
 
     reader.onload = function (e) {
-      $('#image-display').removeClass('hidden').attr('src', e.target.result).width(150).height(200);
-      $('.image-uploader-btn').removeAttr('disabled');
+      container.addClass('ready');
+      display.removeClass('hidden').attr('src', e.target.result);
+      button.removeAttr('disabled');
     };
 
     reader.readAsDataURL(file);
   }
 }
 
+function removeFile(e) {
+  e.preventDefault();
+
+  $('#file').val(null);
+  container.removeClass('ready');
+  display.addClass('hidden').attr('src', '');
+  button.attr('disabled', true);
+}

@@ -18,18 +18,45 @@
           class="drop-zone"
           ondrop="dropHandler(event);"
           ondragover="dragOverHandler(event);">
-          <div class="drop-zone-icon"></div>
-          <input class="upload-file" type="file" name="files[]" accept="image/*" id="file" onchange="readURL(this);" />
-          <label for="file" class="drop-zone-headline"><span class="box__dragndrop">Upload</span> or drag or paste a photo.</label>
-          <p class="drop-zone-copy">JPG, PNG - Max size 5Mb</p>
+          <div class="drop-zone-copy">
+            <div class="drop-zone-icon"></div>
+            <input class="upload-file" type="file" name="files[]" accept="image/*" id="file" onchange="readURL(this);" />
+            <label for="file" class="drop-zone-headline"><span class="box__dragndrop">Upload</span> or drag or paste a photo.</label>
+            <p class="drop-zone-copy">JPG, PNG - Max size 5Mb</p>
+          </div>
           <img id="image-display" class="image-display hidden" src="#" />
+          <a href="#" class="image-display-remove" onclick="removeFile(event)">Remove</a>
         </div>
       </div>
-      <button disabled class="image-uploader-btn">Add a Photo</button>
+      <button on-text="Spookify!" off-text="Add a Photo" disabled class="btn image-uploader-btn"></button>
     </form>
+    <div id="result" class="results-section">
+      <h2 class="results-section-headline">Your Home, Spookified:</h2>
+      <div class="results">
+        <div class="result-card">
+          <h3 class="result-card-title">Lightly Spooked</h3>
+          <img class="result-card-image" id="lightly-spooked" src="">
+        </div>
+        <div class="result-card">
+          <h3 class="result-card-title">Spookier</h3>
+          <img class="result-card-image" id="spookier" src="">
+        </div>
+        <div class="result-card">
+          <h3 class="result-card-title">Spooky</h3>
+          <img class="result-card-image" id="spooky" src="">
+        </div>
+        <div class="result-card">
+          <h3 class="result-card-title">Totally Spookified</h3>
+          <img class="result-card-image" id="totally-spookified" src="">
+        </div>
+      </div>
+      <div class="btn-container">
+        <a href="" class="btn results-btn">Spookify Again!</a>
+        <a href="" class="btn results-btn">Try A Different Photo</a>
+      </div>
+    </div>
 	</div>
 </section>
-<section id="results"></section>
 <script
   src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="

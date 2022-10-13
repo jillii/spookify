@@ -16,15 +16,6 @@ let form = document.getElementById('image-upload-form'),
     file = document.querySelector('#file'),
     results = document.getElementById('results');
 
-function handleSubmit (event) {
-  console.log("handleSubmit");
-  event.preventDefault();
-
-  let reader = new FileReader();
-  reader.onload = generate_images;
-  reader.readAsDataURL(file);
-
-}
 
 async function get_results(base_img, promptName, str) {
   console.log("get_results");
@@ -58,6 +49,16 @@ function generate_images (event) {
     console.log('youre in the loop');
     results.append(get_results(str, prompts[i], strs[i]));
   }
+}
+
+function handleSubmit (event) {
+  console.log("handleSubmit");
+  event.preventDefault();
+
+  let reader = new FileReader();
+  reader.onload = generate_images;
+  reader.readAsDataURL(file);
+
 }
 
 form.addEventListener('submit', handleSubmit);
