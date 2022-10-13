@@ -61,8 +61,7 @@ async function get_results(base_img, promptName, str) {
     method: 'post',
     url: 'https://msomg243rj.execute-api.us-east-1.amazonaws.com/prod/foxy/spookify ',
      headers: { 
-      'Content-Type': 'application/json',
-      'matt-test': 'MATT-TEST'
+      'Content-Type': 'application/json'
     },
     data : data
   };
