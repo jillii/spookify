@@ -68,11 +68,13 @@ async function get_results(base_img, promptName, str) {
 function generate_images (event) {
   let str = event.target.result;
 
-  if (false) {
-    for (var i = 0; i < 4; i++) {
-      results.append(get_results(str, prompts[i], strs[i]));
-    }
-  }
+  validate(str);
+
+  // if (validate(str)) {
+  //   for (var i = 0; i < 4; i++) {
+  //     results.append(get_results(str, prompts[i], strs[i]));
+  //   }
+  // }
 }
 
 function handleSubmit (event) {
