@@ -16,8 +16,26 @@ let form = document.getElementById('image-upload-form'),
     file = document.querySelector('#file'),
     results = document.getElementById('results');
 
+$.ajax({
+  url: "https://b64-room-scene.foxyai.com/foxy/room_scene_classification",
+  type: "GET",
+  success: function (result) {
+    console.log(result);
+  },
+  error: function (error) {
+    console.log(error);
+  }
 
-async function get_results(base_img, promptName, str) {
+});
+
+function validate(base_img) {
+  console.log('validate method');
+
+
+  return true;
+}
+
+function get_results(base_img, promptName, str) {
   console.log("get_results");
   var data = JSON.stringify({
     "strength": str,
@@ -35,7 +53,7 @@ async function get_results(base_img, promptName, str) {
     data : data
   };
 
-  const response = await axios(config);
+  const response = axios(config);
   console.log(response);
   const formedImgData = response.data.result;
 
@@ -45,9 +63,10 @@ async function get_results(base_img, promptName, str) {
 function generate_images (event) {
   let str = event.target.result;
 
-  for (var i = 0; i < 4; i++) {
-    console.log('youre in the loop');
-    results.append(get_results(str, prompts[i], strs[i]));
+  if (validate(str)) {
+    for (var i = 0; i < 4; i++) {
+      results.append(get_results(str, prompts[i], strs[i]));
+    }
   }
 }
 
