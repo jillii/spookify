@@ -138,6 +138,15 @@ a.image-display-remove {
   display: none;
 }
 
+.image-uploader-btn {
+  transition: opacity .25s, background-color .25s;
+}
+
+.image-uploader-btn[disabled]:not(.working) {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .image-uploader-btn:after {
   content: attr(off-text);
 }
@@ -155,6 +164,7 @@ a.image-display-remove {
 
 .results-section {
   margin-top: 72px;
+  margin-bottom: 114px;
 }
 
 .results-section-headline {
@@ -197,6 +207,41 @@ a.image-display-remove {
   width: 100%;
   object-fit: cover;
 }
+
+.explanation-section {
+  margin-top: 70px;
+  padding: 42px 21px 79px;
+  background-color: #21262B;
+  border-radius: 25px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  line-height: 30px;
+}
+.explanation-ghost {
+  margin-bottom: 53px;
+}
+.explanation-headline {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
+}
+.explanation-copy {
+  max-width: 743px;
+  margin: 0 auto 45px;
+}
+.explanation-cta {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: 700;
+}
+a.explanation-cta-link {
+  color: #FF7D47;
+}
+
 @media screen and (max-width: 1250px) {
   .result-card-image {
     height: 30vw;
@@ -210,7 +255,8 @@ a.image-display-remove {
 }
 
 @media screen and (max-width: 768px) {
-  .image-uploader-headline {
+  .image-uploader-headline,
+  .explanation-headline {
     font-size: 33px;
     line-height: 38px;
   }
@@ -222,8 +268,19 @@ a.image-display-remove {
 }
 
 @media screen and (max-width: 480px) {
-  .image-uploader-headline {
+  .image-uploader-headline,
+  .explanation-headline {
     font-size: 28px;
     line-height: 33px;
+  }
+
+  .explanation-copy {
+    font-size: 14px;
+    line-height: 26px;
+  }
+
+  .explanation-cta {
+    font-size: 16px;
+    line-height: 23px;
   }
 }

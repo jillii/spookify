@@ -87,7 +87,7 @@ async function generate_images (event) {
     }
   }
 
-  await btn.removeClass('working').removeAttr('disabled');
+  await btn.removeClass('working');
   await results_container.removeClass('hidden');
 }
 
