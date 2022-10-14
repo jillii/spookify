@@ -1,3 +1,4 @@
+/*for testing puposes only*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 body {
@@ -10,20 +11,34 @@ body {
   margin: 0 auto;
   position: relative;
 }
-
+/*End for testing purposes only*/
+#single-col-text-block_63497ca6960b5 {
+  background-image: url(https://foxyai.com/wp-content/uploads/2022/10/spookify_bg.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+.single-col-text p {
+  color: #fff;
+}
+#single-col-text-block_63497c3f960b4,
+#single-col-text-block_63497cd3960b6,
+#single-col-text-block_63497ce3960b7 {
+  display: none;
+}
+.single-col-text__wrapper {
+  max-width: none;
+}
 .hidden,
 .upload-file {
   display: none;
 }
-
 .image-uploader-section {
-  padding: 104px 0 219px;
-  background-image: url(images/spookify_bg.png);
-  background-repeat: no-repeat;
-  background-position: center top;
-  color: #21262B;
+  max-width: 1194px;
+  margin: 0 auto;
+  position: relative;
+  padding: 70px 0 127px;
+  color: #21262b;
   text-align: center;
-  overflow: hidden;
 }
 .image-uploader-headline {
   margin-bottom: 72px;
@@ -33,24 +48,22 @@ body {
 }
 .drop-zone-container {
   padding: 21px;
-  background-color: #21262B;
+  background-color: #21262b;
   color: #fff;
   border-radius: 25px;
   font-size: 14px;
   line-height: 19px;
 }
-
 .drop-zone {
   padding: 70px 21px;
-  border: 2px dashed #477D77;
+  border: 2px dashed #477d77;
   border-radius: 13px;
 }
-
 .drop-zone-icon {
-  background-image: url(images/haunted-mansion.png);
+  background-image: url(https://foxyai.com/wp-content/uploads/2022/10/haunted-mansion.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #477D77;
+  background-color: #477d77;
   width: 56px;
   height: 56px;
   margin: 0 auto 13px;
@@ -58,57 +71,47 @@ body {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
 .image-display {
   width: 187px;
   height: 187px;
   object-fit: contain;
 }
-
 .size-error {
   color: red;
 }
-
 a.image-display-remove {
   display: none;
   margin: 8px auto 0;
   color: #fff;
 }
-
 .drop-zone-headline {
   font-size: 26px;
   line-height: 40px;
   font-weight: 700;
 }
-
 .drop-zone-copy {
   margin-top: 13px;
 }
-
 .box__dragndrop {
-  color: #477D77;
+  color: #477d77;
 }
-
 .bg-image {
   position: absolute;
 }
-
 .bg-image-top-right {
-  top: -146px;
-  right: -85px;
+  top: 0;
+  right: -66px;
 }
-
 .bg-image-bottom-left {
-  bottom: -236px;
-  left: -78px;
+  bottom: -102px;
+  left: -79px;
 }
-
-.btn {
+.spookify-btn {
   appearance: none;
   -webkit-appearance: none;
   margin-top: 42px;
   padding: 16px 21px;
-  background-color: #477D77;
+  background-color: #477d77;
   color: #fff;
   border-radius: 4px;
   border: none;
@@ -117,87 +120,73 @@ a.image-display-remove {
   box-sizing: border-box;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color .25s;
+  transition: background-color 0.25s;
 }
-
 .btn-container {
   display: flex;
   justify-content: center;
   margin: -8px;
 }
-
 .results-btn {
   margin: 8px;
 }
-
-.btn[disabled] {
-  background-color: #9A9A9A;
+.spookify-btn[disabled] {
+  background-color: #9a9a9a;
   cursor: auto;
 }
-
 .drop-zone-container.ready .drop-zone {
   padding: 44px 21px;
 }
 .drop-zone-container.ready .drop-zone-copy {
   display: none;
 }
-
 .image-uploader-btn {
-  transition: opacity .25s, background-color .25s;
+  transition: opacity 0.25s, background-color 0.25s;
 }
-
 .image-uploader-btn[disabled]:not(.working) {
   opacity: 0;
   pointer-events: none;
 }
-
 .image-uploader-btn:after {
   content: attr(off-text);
 }
-.drop-zone-container.ready + .image-uploader-btn:after {
+.drop-zone-container.ready + .image-uploader-btn:after,
+.drop-zone-container.ready + p .image-uploader-btn:after {
   content: attr(on-text);
 }
-
 .image-uploader-btn.working:after {
   content: attr(working-text) !important;
 }
-
 .drop-zone-container.ready .image-display-remove {
   display: block;
 }
-
 .results-section {
   margin-top: 72px;
   margin-bottom: 114px;
 }
-
 .results-section-headline {
   margin-bottom: 21px;
   font-size: 18px;
   line-height: 23px;
   font-weight: 700;
-  color: #21262B;
+  color: #21262b;
 }
-
 .results {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: -8px -8px 54px;
 }
-
 .result-card {
   max-width: 570px;
   width: calc(50% - 8px * 2);
   margin: 8px;
   padding: 40px 44px 52px;
-  background-color: #21262B;
+  background-color: #21262b;
   color: #fff;
   border-radius: 25px;
   box-sizing: border-box;
 }
-
-
 .result-card-title {
   margin-bottom: 28px;
   font-size: 18px;
@@ -205,17 +194,15 @@ a.image-display-remove {
   font-weight: 700;
   color: #fff;
 }
-
 .result-card-image {
   height: 501px;
   width: 100%;
   object-fit: cover;
 }
-
 .explanation-section {
   margin-top: 70px;
   padding: 42px 21px 79px;
-  background-color: #21262B;
+  background-color: #21262b;
   border-radius: 25px;
   color: #fff;
   text-align: center;
@@ -237,15 +224,14 @@ a.image-display-remove {
   margin: 0 auto 45px;
 }
 .explanation-cta {
-  max-width: 480px;
+  max-width: 450px;
   margin: 0 auto;
   font-size: 18px;
   font-weight: 700;
 }
 a.explanation-cta-link {
-  color: #FF7D47;
+  color: #ff7d47;
 }
-
 @media screen and (max-width: 1250px) {
   .result-card-image {
     height: 30vw;
@@ -257,33 +243,28 @@ a.explanation-cta-link {
     width: 100%;
   }
 }
-
 @media screen and (max-width: 768px) {
   .image-uploader-headline,
   .explanation-headline {
     font-size: 33px;
     line-height: 38px;
   }
-
   .drop-zone-headline {
     font-size: 22px;
     line-height: 28px;
   }
 }
-
 @media screen and (max-width: 480px) {
   .image-uploader-headline,
   .explanation-headline {
     font-size: 28px;
     line-height: 33px;
   }
-
   .explanation-copy {
     font-size: 14px;
     line-height: 26px;
   }
-
-  .explanation-cta {
+    .explanation-cta {
     font-size: 16px;
     line-height: 23px;
   }
