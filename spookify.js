@@ -82,7 +82,7 @@ async function generate_images (event) {
   if (base64.indexOf("data:image/png;base64,") != -1) {
     str = base64.split('data:image/png;base64,')[1];
   } else {
-    str = base64.split('data:image/jpg;base64,')[1];
+    str = base64.split('data:image/jpeg;base64,')[1];
   }
 
   var img = '';
