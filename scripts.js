@@ -53,6 +53,7 @@ function removeFile(e) {
   e.preventDefault();
 
   $('#file').val(null);
+  $('.size-error').addClass('hidden');
   container.removeClass('ready');
   display.addClass('hidden').attr('src', '');
   button.attr('disabled', true);

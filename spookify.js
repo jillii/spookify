@@ -17,7 +17,8 @@ let form    = document.getElementById('image-upload-form'),
     results_container = $('#results'),
     results = results_container.find('.result-card'),
     valid   = ["front_of_house", "rear_of_house", "side_of_house", "street_scene"],
-    btn     = $('.image-uploader-btn');
+    btn     = $('.image-uploader-btn'),
+    error   = $('.size-error');
 
 async function validate(base_img) {
   // var data = JSON.stringify({
@@ -99,15 +100,28 @@ async function generate_images (event) {
   await results_container.removeClass('hidden');
 }
 
+function size_check() {
+  var fsize = Math.round((file.size / 1024));
+  if (fsize >= 5120) {     //5MB
+    return false;
+  }
+  return true;
+}
+
 function handleSubmit (event) {
   event.preventDefault();
 
-  btn.addClass('working').attr('disabled', true);
-  results_container.addClass('hidden');
+  if (!size_check()) {
+    error.removeClass('hidden');
+  } else {
+    btn.addClass('working').attr('disabled', true);
+    results_container.addClass('hidden');
 
-  let reader = new FileReader();
-  reader.onload = generate_images;
-  reader.readAsDataURL(file);
+    let reader = new FileReader();
+    console.log(reader);
+    reader.onload = generate_images;
+    reader.readAsDataURL(file);
+  }
 }
 
 form.addEventListener('submit', handleSubmit);

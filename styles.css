@@ -65,6 +65,10 @@ body {
   object-fit: contain;
 }
 
+.size-error {
+  color: red;
+}
+
 a.image-display-remove {
   display: none;
   margin: 8px auto 0;
