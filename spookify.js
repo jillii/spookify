@@ -52,7 +52,6 @@ async function validate(base_img) {
 }
 
 const get_results = async (base_img, promptName, str) => {
-  console.log("get_results");
   var data = JSON.stringify({
     "strength": str,
     "prompt": prompts[promptName],
@@ -77,12 +76,21 @@ const get_results = async (base_img, promptName, str) => {
 }
 
 async function generate_images (event) {
-  let str = event.target.result.split('data:image/png;base64,')[1];
+  let base64 = event.target.result,
+      str    = "";
+
+  if (base64.indexOf("data:image/png;base64,") != -1) {
+    str = base64.split('data:image/png;base64,')[1];
+  } else {
+    str = base64.split('data:image/jpg;base64,')[1];
+  }
+
   var img = '';
 
   if (validate(str)) {
     for (var i = 0; i < 4; i++) {
       src = await get_results(str, prompts[i], strs[i]);
+      // await console.log(src);
       results.find('img').eq(i).attr('src', ' data:image/jpg;base64,' + src);
     }
   }
