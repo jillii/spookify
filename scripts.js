@@ -54,6 +54,7 @@ function removeFile(e) {
 
   $('#file').val(null);
   $('.size-error').addClass('hidden');
+  $('.house-error').addClass('hidden');
   container.removeClass('ready');
   display.addClass('hidden').attr('src', '');
   button.attr('disabled', true);

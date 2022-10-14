@@ -18,16 +18,22 @@ let form    = document.getElementById('image-upload-form'),
     results = results_container.find('.result-card'),
     valid   = ["front_of_house", "rear_of_house", "side_of_house", "street_scene"],
     btn     = $('.image-uploader-btn'),
-    error   = $('.size-error');
+    error   = $('.size-error'),
+    house_error = $('.house-error');
 
-async function validate(base_img) {
-  console.log('validate');
-  console.log(base_img);
+async function validate(event) {
+  let base64 = event.target.result,
+      str    = '';
+
+  if (base64.indexOf("data:image/png;base64,") != -1) {
+    str = base64.split('data:image/png;base64,')[1];
+  } else {
+    str = base64.split('data:image/jpeg;base64,')[1];
+  }
+  
   var data = JSON.stringify({
-    "base64": base_img
+    "base64": str
   });
-
-
   var config = {
     method: 'post',
     url: 'https://msomg243rj.execute-api.us-east-1.amazonaws.com/prod/foxy/room_scene_classification',
@@ -37,24 +43,25 @@ async function validate(base_img) {
     data : data
   };
 
-  try {
-      const response = await axios(config);
-      const formedImgData = await response.data.result;
+  axios(config)
+  .then(function (response) {
+    const formedImgData = response.data.result;
 
-      for (var i = 1; i < formedImgData.length; i += 2) {
-        if (parseFloat(formedImgData[i]) > 0.65) {
-          if (valid.includes(formedImgData[i - 1])) {
-            return true;
-          }
+    for (var i = 1; i < formedImgData.length; i += 2) {
+      if (parseFloat(formedImgData[i]) > 0.65) {
+        if (valid.includes(formedImgData[i - 1])) {
+          generate_images(str);
         }
       }
-  } catch (err) {
-      console.log(err);
-  }
+    }
+    house_error.removeClass('hidden');
+    btn.removeClass('working');
+    return false;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
-
-
-  return false;
 }
 
 const get_results = async (base_img, promptName, str) => {
@@ -78,34 +85,19 @@ const get_results = async (base_img, promptName, str) => {
       return response.data.result;
   } catch (err) {
       console.log(err);
-      console.log('error end');
   }
 }
 
-async function generate_images (event) {
-  console.log("generate_images");
-  let base64 = event.target.result,
-      str    = "";
-
-  if (base64.indexOf("data:image/png;base64,") != -1) {
-    str = base64.split('data:image/png;base64,')[1];
-  } else {
-    str = base64.split('data:image/jpeg;base64,')[1];
-  }
-
+async function generate_images (str) {
   var img = '';
 
-  if (validate(str)) {
-    console.log("you made it here");
-    // for (var i = 0; i < 4; i++) {
-      // src = await get_results(str, prompts[i], strs[i]);
-      // await console.log(src);
-      // results.find('img').eq(i).attr('src', ' data:image/jpg;base64,' + src);
-    // }
+  await results_container.removeClass('hidden');
+  for (var i = 0; i < 4; i++) {
+    src = await get_results(str, prompts[i], strs[i]);
+    results.find('img').eq(i).attr('src', ' data:image/jpg;base64,' + src);
   }
 
-  await btn.removeClass('working');
-  await results_container.removeClass('hidden');
+  btn.removeClass('working');
 }
 
 function size_check() {
@@ -126,8 +118,7 @@ function handleSubmit (event) {
     results_container.addClass('hidden');
 
     let reader = new FileReader();
-    console.log(reader);
-    reader.onload = generate_images;
+    reader.onload = validate;
     reader.readAsDataURL(file);
   }
 }
