@@ -7,6 +7,8 @@ To make changes, you will need to:
 	3. make edits
 	4. commit and push!
 
+Updates take about 1-2 to propegate, you can see their progress on https://github.com/jillii/spookify.
+
 The site can be viewed at https://jillii.github.io/spookify/
 
 Make sure to make thoughtful organized commits.
