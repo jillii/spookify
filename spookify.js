@@ -22,9 +22,11 @@ let form    = document.getElementById('image-upload-form'),
 
 async function validate(base_img) {
   console.log('validate');
+  console.log(base_img);
   var data = JSON.stringify({
     "base64": base_img
   });
+
 
   var config = {
     method: 'post',
@@ -34,8 +36,6 @@ async function validate(base_img) {
     },
     data : data
   };
-
-  // await console.log(response);
 
   try {
       const response = await axios(config);
@@ -78,6 +78,7 @@ const get_results = async (base_img, promptName, str) => {
       return response.data.result;
   } catch (err) {
       console.log(err);
+      console.log('error end');
   }
 }
 
@@ -94,14 +95,13 @@ async function generate_images (event) {
 
   var img = '';
 
-  console.log(str);
   if (validate(str)) {
     console.log("you made it here");
-    for (var i = 0; i < 4; i++) {
-      src = await get_results(str, prompts[i], strs[i]);
+    // for (var i = 0; i < 4; i++) {
+      // src = await get_results(str, prompts[i], strs[i]);
       // await console.log(src);
-      results.find('img').eq(i).attr('src', ' data:image/jpg;base64,' + src);
-    }
+      // results.find('img').eq(i).attr('src', ' data:image/jpg;base64,' + src);
+    // }
   }
 
   await btn.removeClass('working');
