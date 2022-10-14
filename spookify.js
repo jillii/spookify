@@ -21,35 +21,40 @@ let form    = document.getElementById('image-upload-form'),
     error   = $('.size-error');
 
 async function validate(base_img) {
-  // var data = JSON.stringify({
-  //   "base64": base_img
-  // });
+  console.log('validate');
+  var data = JSON.stringify({
+    "base64": base_img
+  });
 
-  // var config = {
-  //   method: 'post',
-  //   url: 'https://b64-room-scene.foxyai.com/foxy/room_scene_classification',
-  //    headers: { 
-  //     'Content-Type': 'application/json',
-  //     'matt-test': 'MATT-TEST'
-  //   },
-  //   data : data
-  // };
+  var config = {
+    method: 'post',
+    url: 'https://msomg243rj.execute-api.us-east-1.amazonaws.com/prod/foxy/room_scene_classification',
+     headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
 
-  // const response = await axios(config);
-  // console.log(response);
-  // const formedImgData = response.data.result;
+  // await console.log(response);
 
-  // for (var i = 1; i < formedImgData.length; i += 2) {
-  //   if (parseFloat(formedImgData[i]) > 0.65) {
-  //     if (valid.includes(formedImgData[i - 1])) {
-  //       return true;
-  //     }
-  //   }
-  // }
+  try {
+      const response = await axios(config);
+      const formedImgData = await response.data.result;
 
-  // return false;
+      for (var i = 1; i < formedImgData.length; i += 2) {
+        if (parseFloat(formedImgData[i]) > 0.65) {
+          if (valid.includes(formedImgData[i - 1])) {
+            return true;
+          }
+        }
+      }
+  } catch (err) {
+      console.log(err);
+  }
 
-  return true;
+
+
+  return false;
 }
 
 const get_results = async (base_img, promptName, str) => {
@@ -77,6 +82,7 @@ const get_results = async (base_img, promptName, str) => {
 }
 
 async function generate_images (event) {
+  console.log("generate_images");
   let base64 = event.target.result,
       str    = "";
 
@@ -88,7 +94,9 @@ async function generate_images (event) {
 
   var img = '';
 
+  console.log(str);
   if (validate(str)) {
+    console.log("you made it here");
     for (var i = 0; i < 4; i++) {
       src = await get_results(str, prompts[i], strs[i]);
       // await console.log(src);
