@@ -1,5 +1,5 @@
 const prompts = {
-  'Lightly spooked...': "a detailed fantasy matte painting of a spooky house by Jordan Grimmer, a real hellish shadowy scene from a film still of nightmare before christmas by Tim Burton, behance contest winner, vanitas, octane render, cinematic lighting, orange, pumpkin, bats",
+  'Lightly spooked...': "a Tim Burton spooky old beat down house with ghosts in the windows and pumpkins in the yard",
   'Spookier...': 'a detailed fantasy matte painting of a spooky house by Jordan Grimmer, a real hellish shadowy scene from a film still of nightmare before christmas by Tim Burton, behance contest winner, vanitas, octane render, cinematic lighting, orange, ghoul, goblin',
   'Spooky...': 'a detailed fantasy matte painting of a spooky house by Jordan Grimmer, a real hellish shadowy scene from a film still of nightmare before christmas by Tim Burton, behance contest winner, vanitas, octane render, cinematic lighting, orange, spiders, witches',
   'Totally Spookified..': 'a Tim Burton spooky old beat down house with ghosts in the windows and pumpkins in the yard'
@@ -8,7 +8,7 @@ const prompts = {
 const strs = [
   '0.60',
   '0.70',
-  '0.77',
+  '0.80',
   '0.85'
 ]
 
@@ -43,20 +43,27 @@ async function validate(event) {
     data : data
   };
 
+  var is_house = false;
+
   axios(config)
   .then(function (response) {
+    console.log(response);
     const formedImgData = response.data.result;
 
     for (var i = 1; i < formedImgData.length; i += 2) {
+      console.log(formedImgData[i - 1]);
+      console.log(formedImgData[i]);
       if (parseFloat(formedImgData[i]) > 0.65) {
         if (valid.includes(formedImgData[i - 1])) {
+          is_house = true;
           generate_images(str);
         }
       }
     }
-    house_error.removeClass('hidden');
-    btn.removeClass('working');
-    return false;
+    if (!is_house) {
+      house_error.removeClass('hidden');
+      btn.removeClass('working');
+    }
   })
   .catch(function (error) {
     console.log(error);
@@ -89,14 +96,19 @@ const get_results = async (base_img, promptName, str) => {
 }
 
 async function generate_images (str) {
-  var img = '';
+  var src = '',
+      src2 = '',
+      rand = Math.floor((Math.random() * 3) + 1);
 
-  await results_container.removeClass('hidden');
-  for (var i = 0; i < 4; i++) {
-    src = await get_results(str, prompts[i], strs[i]);
-    results.find('img').eq(i).attr('src', ' data:image/jpg;base64,' + src);
-  }
+  console.log(rand);
 
+  src = await get_results(str, prompts[0], strs[0]);
+  results.find('img').eq(0).attr('src', ' data:image/jpg;base64,' + src);
+
+  src2 = await get_results(str, prompts[rand], strs[rand]);
+  results.find('img').eq(1).attr('src', ' data:image/jpg;base64,' + src2);
+  
+  results_container.removeClass('hidden');
   btn.removeClass('working');
 }
 
